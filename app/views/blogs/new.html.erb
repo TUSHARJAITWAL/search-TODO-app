@@ -1,0 +1,17 @@
+<%= form_with model: @blog do |form| %>
+
+
+    <div>
+    <%= form.label :title %> <br>
+    <%= form.text_field :title %>
+    </div><br>
+    
+    <div>
+    <%= form.label :content %><br>
+    <%= form.text_field :content %>
+    </div><br>
+
+
+    <%= form.submit %>
+<% end %> <br>
+    <%= link_to "Back", blogs_path %> 

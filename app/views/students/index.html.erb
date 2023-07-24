@@ -1,0 +1,107 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/students">Student List</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/students/new">New Student</a>
+            <li class="nav-item">
+            <a class="nav-link" href="/">welcome</a>
+        </ul>
+    
+        <% if admin_user_signed_in? %>
+          <%= button_to 'Sign-Out',
+          destroy_admin_user_session_path, method: :delete, :onclick => "return confirm('Are you sure ?')",
+          class: "btn btn-outline-info" %>
+        <% else %>
+        <%= button_to 'Sign-In',new_admin_user_session_path, class: "btn btn-outline-info" %>
+        
+        <% end %>    
+      </div>
+    </div>
+  </nav>
+<div class="container my-4">
+  <%= form_tag(students_path, :method => "get",   
+  class: 'navbar-form navbar-left') do %>  
+      <div class="input-group">  
+          <%= search_field_tag :search, params[:search], placeholder: "Search", class: "form-control me-2" %>  
+          <div class="input-group-btn">  
+              <%= button_tag "Search", :class => 'btn btn-primary glyphicon glyphicon-search',:name => nil  %>  
+          </div> 
+      </div>  
+  <% end %>
+</div>
+<div class="container">
+    <p class="text-info bg-dark my-2"><%= notice %></p>
+    <h1><u>Listing Students</u></h1>
+
+    <table class="table table-info table-hover">
+        <thead>
+        <tr>
+        <th>First Name </th>
+        <th>Last Name </th>
+        <th>Email</th>
+        <th>Date of Birth</th>
+        <th>Contact</th>
+        <th>Address</th>
+        <th colspan="4">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @students.each do |student| %>
+        <tr>
+            <td><%= student.first_name %></td>
+            <td><%= student.last_name %></td>
+            <td><%= student.email %></td>
+            <td><%= student.date_of_birth %></td>
+            <td><%= student.contact %></td>
+            <td><%= student.address %></td>
+
+            <td><%= link_to 'Show', student, class: "btn btn-outline-success" %><td>
+            <td><%= link_to 'Edit',edit_student_path(student), class: "btn btn-outline-warning me-2" %></td>
+            <td><%= button_to 'Destroy',student, method: :delete, onclick: "return confirm{'Are you sure?'}",class:"btn btn-outline-danger" %></td>  
+        </tr>
+        <% end %>
+        </tbody>
+    </table>
+</div>
+<div class="bg-white border">
+    
+      <section class="p-4 text-center">
+        <footer class="bg-dark text-center text-white">
+          <!-- Grid container -->
+          <div class="container p-4 pb-0">
+            <!-- Section: Social media -->
+            <section class="mb-4">
+              <!-- Facebook -->
+              <a class="btn text-white btn-floating m-1" style="background-color: #3b5998;" href="https://www.facebook.com/home.php" role="button"><i class="bi bi-facebook"></i></a>
+
+              <!-- Twitter -->
+              <a class="btn text-white btn-floating m-1" style="background-color: #55acee;" href="#!" role="button"><i class="bi bi-twitter"></i></a>
+
+              <!-- Google -->
+              <a class="btn text-white btn-floating m-1" style="background-color: #dd4b39;" href="https://www.google.com/" role="button"><i class="bi bi-google"></i></a>
+
+              <!-- Instagram -->
+              <a class="btn text-white btn-floating m-1" style="background-color: #ac2bac;" href="https://www.instagram.com/" role="button"><i class="bi bi-instagram"></i></a>
+
+              <!-- Linkedin -->
+              <a class="btn text-white btn-floating m-1" style="background-color: #0082ca;" href="https://www.linkedin.com/feed/" role="button"><i class="bi bi-linkedin"></i></a>
+              <!-- Github -->
+              <a class="btn text-white btn-floating m-1" style="background-color: #333333;" href="https://github.com/TUSHARJAITWAL" role="button"><i class="bi bi-github"></i></a>
+            </section>
+            <!-- Section: Social media -->
+          </div>
+          <!-- Grid container -->
+
+          <!-- Copyright -->
+          <div class="text-center p-3" style="background-color:pink;">
+            <a class="text-white" href="https://tusharjaitwal.github.io/my-profile.github.io/">Jaitwal.com</a>
+          </div>
+          <!-- Copyright -->
+        </footer>
+      </section>
+          
+  </div>

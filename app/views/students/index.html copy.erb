@@ -1,0 +1,31 @@
+<div class="container">
+    <p class="text-info bg-dark"><%= notice %></p>
+
+    <h1><u>Listing Students</u></h1>
+
+    <table class="table table-danger table-hover">
+        <thead>
+        <tr>
+        <th>Student</th>
+        <th>Date of Birth</th>
+        <th>Contact</th>
+        <th>Address</th>
+        <th colspan="4">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @students.each do |student| %>
+        <tr>
+            <td><%= student.name_with_email %></td>
+            <td><%= student.date_of_birth %></td>
+            <td><%= student.contact %></td>
+            <td><%= student.address %></td>
+
+            <td><%= link_to 'Show', student, class: "btn btn-outline-success" %><td>
+            <td><%= link_to 'Edit',edit_student_path(student), class: "btn btn-outline-warning me-2" %></td>
+            <td><%= button_to 'Destroy',student, method: :delete, onclick: "return confirm{'Are you sure?'}",class:"btn btn-outline-danger" %></td>  
+        </tr>
+        <% end %>
+        </tbody>
+    </table>
+</div>

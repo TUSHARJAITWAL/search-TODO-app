@@ -1,0 +1,24 @@
+<div class="container">
+    <h1><u>Listing Blogs</u></h1>
+
+    <table class="table table-danger table-hover">
+        <thead>
+        <tr>
+        <th>Title</th>
+        <th>Student</th>
+        <th colspan="4">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @blogs.each do |blog| %>
+        <tr>
+            <td><%= blog.title %></td>
+            <td><%= link_to blog.student.name_with_email,blog.student %></td>
+            <td><%= link_to 'Show', blog, class: "btn btn-outline-success" %><td>
+            <td><%= link_to 'Edit',edit_blog_path(blog), class: "btn btn-outline-warning me-2" %></td>
+            <td><%= link_to 'Delete',blog,data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-outline-danger" %></td>  
+        </tr>
+        <% end %>
+        </tbody>
+    </table>
+</div>

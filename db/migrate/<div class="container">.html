@@ -1,0 +1,29 @@
+<div class="container">
+    <strong><%= notice %></strong>
+
+    <h1><u>Listing Students</u></h1>
+
+    <table class="table table-primary table-hover">
+        <tbody>
+        <div class="row">
+            <% @students.each do |student| %>
+                <div class="col-3 mb-3">
+                    <div class="card" style="width: 18rem;">
+                        <img src="https://static.thenounproject.com/png/2410970-200.png" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title"><%= student.full_name %></h5>
+                            <p class="card-text"><%= student.email %></p>
+                            <p class="card-text"><%= student.contact %></p>
+                            <p class="card-text"><%= student.date_of_birth %></p>
+                            <p class="card-text"><%= student.age %></p>
+                            <p class="card-text"><%= student.address %></p>
+                            <%= link_to 'Show', student, class: "btn btn-outline-success" %>
+                            <%= link_to 'Edit',edit_student_path(student), class: "btn btn-outline-info" %>
+                            <%= link_to 'Delete',student,data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: "btn btn-outline-danger" %>
+                        </div>
+                    </div>
+                </div>
+            <% end %>
+        </tbody>
+    </table>
+</div>
